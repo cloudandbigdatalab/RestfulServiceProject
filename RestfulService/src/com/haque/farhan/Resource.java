@@ -17,13 +17,12 @@ import javax.ws.rs.core.MediaType;
 @Path("myresource")
 public class Resource {
 
-    
+	/* public String hello(){
+	return "Hello REST OCI!!!";
+}*/ 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String hello(){
-    	return "Hello REST OCI!!!";
-    }
-   /* public String readDatabase() {
+    public String readDatabase() {
     	Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -55,5 +54,5 @@ public class Resource {
 		}
     	
         return finalData;
-    }*/
+    }
 }
