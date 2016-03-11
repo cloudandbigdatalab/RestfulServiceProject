@@ -29,11 +29,11 @@ public class Resource {
 		String finalData = null;
 		try {
 			//new com.mysql.jdbc.Driver();
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			Class.forName("com.mysql.jdbc.GoogleDriver").newInstance();
 // conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/testdatabase?user=testuser&password=testpassword");
-			String connectionUrl = "jdbc:mysql://mysql9.000webhost.com";
-			String connectionUser = "a7747432_user";
-			String connectionPassword = "bhaq2010";
+			String connectionUrl = "jdbc:google:mysql://utsasecurity-1219:utsasecuritysqlinstance/userinformation";
+			String connectionUser = "root";
+			String connectionPassword = "";
 			conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM prediction");
@@ -53,6 +53,6 @@ public class Resource {
 			try { if (conn != null) conn.close(); } catch (SQLException e) { e.printStackTrace(); }
 		}
     	
-        return "Test REST";//finalData;
+        return finalData;
     }
 }
