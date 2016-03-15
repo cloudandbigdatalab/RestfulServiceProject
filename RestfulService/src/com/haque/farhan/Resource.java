@@ -5,54 +5,26 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.haque.farhan.model.UserProfile;
+
 /**
  * Root resource (exposed at "myresource" path)
  */
 @Path("myresource")
+@Produces(MediaType.APPLICATION_JSON)
 public class Resource {
-
-	/* public String hello(){
-	return "Hello REST OCI!!!";
-}*/ 
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String readDatabase() {
-    	Connection conn = null;
-		Statement stmt = null;
-		ResultSet rs = null;
-		String finalData = null;
-		try {
-			//new com.mysql.jdbc.Driver();
-			Class.forName("com.mysql.jdbc.GoogleDriver").newInstance();
-// conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/testdatabase?user=testuser&password=testpassword");
-			String connectionUrl = "jdbc:google:mysql://utsasecurity-1219:utsasecuritysqlinstance/userinformation";
-			String connectionUser = "root";
-			String connectionPassword = "";
-			conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM prediction");
-			while (rs.next()) {
-				String lat = rs.getString("goalNum");
-				String lng = rs.getString("cardnum");
-				String event = rs.getString("posDiff");
-				//System.out.println("ID: " + id + ", First Name: " + firstName
-					//	+ ", Last Name: " + lastName);
-				finalData= lat+"\n"+lng+"\n"+event+"\n";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try { if (rs != null) rs.close(); } catch (SQLException e) { e.printStackTrace(); }
-			try { if (stmt != null) stmt.close(); } catch (SQLException e) { e.printStackTrace(); }
-			try { if (conn != null) conn.close(); } catch (SQLException e) { e.printStackTrace(); }
-		}
-    	
-        return finalData;
-    }
+	Database dataBase=new Database();
+	@GET
+	public List<UserProfile>getUserList(){
+		return dataBase.UserList();
+	}
+  
+    
 }
